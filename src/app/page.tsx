@@ -20,6 +20,7 @@ function getOrdinalSuffix(n: number): string {
 export default async function HomePage() {
   const tHomepage = await getTranslations("homepage");
   const tNav = await getTranslations("nav");
+  const tPrompts = await getTranslations("prompts");
   const session = await auth();
   const config = await getConfig();
   
@@ -508,7 +509,7 @@ export default async function HomePage() {
       <section className="py-12 border-b">
         <div className="container">
           <div className="flex items-center justify-center text-center">
-            <p className="text-muted-foreground">No prompts available yet.</p>
+            <p className="text-muted-foreground">{tPrompts("noPrompts")}</p>
           </div>
         </div>
       </section>
