@@ -5,7 +5,6 @@ import { ArrowRight, Star, Heart, Trophy, Users, HeartHandshake, Code, Lock, Bui
 import { auth } from "@/lib/auth";
 import { getConfig } from "@/lib/config";
 import { Button } from "@/components/ui/button";
-import { DiscoveryPrompts } from "@/components/prompts/discovery-prompts";
 import { HeroCategories } from "@/components/prompts/hero-categories";
 import { CliCommand } from "@/components/layout/cli-command";
 import { ExtensionLink } from "@/components/layout/extension-link";
@@ -21,6 +20,7 @@ function getOrdinalSuffix(n: number): string {
 export default async function HomePage() {
   const tHomepage = await getTranslations("homepage");
   const tNav = await getTranslations("nav");
+  const tPrompts = await getTranslations("prompts");
   const session = await auth();
   const config = await getConfig();
   
@@ -506,7 +506,13 @@ export default async function HomePage() {
       )}
 
       {/* Featured & Latest Prompts Section */}
-      <DiscoveryPrompts isHomepage />
+      <section className="py-12 border-b">
+        <div className="container">
+          <div className="flex items-center justify-center text-center">
+            <p className="text-muted-foreground">{tPrompts("noPrompts")}</p>
+          </div>
+        </div>
+      </section>
 
       {/* CTA Section - only show if not using clone branding */}
       {!useCloneBranding && (
